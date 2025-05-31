@@ -1,5 +1,6 @@
 package FinalProject;
 
+import FinalProject.network.HostRoom;
 import FinalProject.network.NetworkGameManager;
 import javafx.application.Application;
 import javafx.geometry.Pos;

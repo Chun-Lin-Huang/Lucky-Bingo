@@ -1,4 +1,3 @@
-// 單人版 Bingo：玩家 vs 電腦
 package FinalProject;
 
 import javafx.application.Application;
@@ -333,6 +332,6 @@ public class BingoGame extends Application {
             return unmarkedNum;
         }
 
-        return null;
+        return null; // 沒有明顯的連線機會
     }
 }

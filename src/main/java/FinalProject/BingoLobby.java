@@ -1,5 +1,6 @@
 package FinalProject;
 
+import java.io.InputStream;
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.scene.Node;
@@ -14,7 +15,14 @@ public class BingoLobby extends Application {
     @Override
     public void start(Stage primaryStage) {
         // 背景圖片
-        Image bgImage = new Image(getClass().getResourceAsStream("/lobby_logo.png"));
+        InputStream imgStream = getClass().getClassLoader().getResourceAsStream("lobby_logo.png");
+        if (imgStream == null) {
+            System.err.println("⚠找不到圖片 FinalProject/lobby_logo.png");
+        } else {
+            System.out.println("成功讀取圖片");
+        }
+        
+        Image bgImage = new Image(imgStream);
         BackgroundImage backgroundImage = new BackgroundImage(
                 bgImage,
                 BackgroundRepeat.NO_REPEAT,
@@ -68,7 +76,7 @@ public class BingoLobby extends Application {
         root.getChildren().add(menu);
 
         Scene scene = new Scene(root, 1200, 800);
-        primaryStage.setTitle("Bingo 遊戲大廳");
+        primaryStage.setTitle("Bingo Game");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -1,6 +1,5 @@
 package FinalProject;
 
-import FinalProject.network.*;
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.scene.Scene;
@@ -42,10 +41,19 @@ public class OnlineModeSelect extends Application {
             stage.close();
             new JoinRoomUI().start(new Stage()); // 開啟加入畫面
         });
+        
+        // 返回大廳按鈕
+        Button backButton = new Button("返回大廳");
+        backButton.setPrefSize(250, 50);
+        backButton.setStyle("-fx-font-size: 18px; -fx-background-color: #6495ed; -fx-text-fill: black;");
+        backButton.setOnAction(e -> {
+            stage.close();
+            new BingoLobby().start(new Stage()); // 返回大廳
+        });
 
-        root.getChildren().addAll(hostButton, joinButton);
+        root.getChildren().addAll(hostButton, joinButton, backButton);
         Scene scene = new Scene(root, 600, 400);
-        stage.setTitle("選擇聯機模式");
+        stage.setTitle("Bingo Game");
         stage.setScene(scene);
         stage.show();
     }

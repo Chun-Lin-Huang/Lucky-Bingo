@@ -13,7 +13,6 @@ import javafx.util.Duration;
 import java.util.*;
 
 public class BingoOnlineGame extends Application {
-
     private static final int SIZE = 5;
     private static final int CARD_COUNT = 4;
 
