@@ -33,6 +33,7 @@ public class BingoOnlineGame extends Application {
     private boolean isMyTurn = false;
     private boolean gameOver = false;
     private boolean lastGameIWon = false;
+    private boolean hasExited = false;
     private NetworkGameManager netManager;
 
     private HBox cardSelectionBox;
@@ -70,15 +71,13 @@ public class BingoOnlineGame extends Application {
             }
         });
 
-        Button exitButton = new Button("退出遊戲");
+        Button exitButton = new Button("回到大廳");
         exitButton.setPrefSize(200, 60);
         exitButton.setStyle("-fx-font-size: 20px; -fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold;");
         exitButton.setOnAction(e -> {
-            // 關閉目前遊戲視窗
-            Stage currentStage = (Stage) ((Button) e.getSource()).getScene().getWindow();
-            currentStage.close();
+            hasExited = true;
 
-            // 通知對方離開、關閉連線
+            // 嘗試傳送退出訊息與關閉連線
             if (netManager != null) {
                 try {
                     netManager.sendMessage("EXIT");
@@ -87,9 +86,15 @@ public class BingoOnlineGame extends Application {
                 }
             }
 
-            // 返回遊戲大廳
-            Stage lobbyStage = new Stage();
-            new BingoLobby().start(lobbyStage);
+            // 切換畫面：放入 UI 執行緒排程內
+            javafx.application.Platform.runLater(() -> {
+                Stage currentStage = (Stage) ((Button) e.getSource()).getScene().getWindow();
+                try {
+                    new BingoLobby().start(currentStage);  // ✅ 替換畫面而非關閉整個視窗
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
         });
 
         HBox bottomButtons = new HBox(30, startButton, exitButton);
@@ -160,12 +165,14 @@ public class BingoOnlineGame extends Application {
                     });
                 } else if (msg.equals("EXIT")) {
                     javafx.application.Platform.runLater(() -> {
-                        gameOver = true;
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("對方離開遊戲");
-                        alert.setHeaderText(null);
-                        alert.setContentText("對方已退出遊戲。");
-                        alert.showAndWait();
+                        if (!hasExited) { // 只有未主動退出的才顯示提示
+                            gameOver = true;
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("通知");
+                            alert.setHeaderText(null);
+                            alert.setContentText("對方已退出遊戲!");
+                            alert.showAndWait();
+                        }
                     });
                     break;
                 }

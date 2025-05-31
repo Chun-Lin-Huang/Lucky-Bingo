@@ -55,7 +55,16 @@ public class BingoLobby extends Application {
             new OnlineModeSelect().start(onlineStage);  // 打開 Host/Join 選擇畫面
         });
 
-        menu.getChildren().addAll(singlePlay, multiPlay);
+        // 退出遊戲按鈕
+        Button exitButton = new Button("🔚 退出遊戲");
+        exitButton.setPrefSize(250, 60);
+        exitButton.setStyle("-fx-font-size: 20px; -fx-background-color: #FFFFFF; -fx-text-fill: black; -fx-font-weight: bold;");
+        exitButton.setOnAction(e -> {
+            primaryStage.close(); // 關閉主視窗
+        });
+
+        // 將按鈕加入選單
+        menu.getChildren().addAll(singlePlay, multiPlay, exitButton);
         root.getChildren().add(menu);
 
         Scene scene = new Scene(root, 1200, 800);
