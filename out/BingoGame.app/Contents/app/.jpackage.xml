@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<jpackage-state version="21.0.7" platform="macOS">
+  <app-version>1.0</app-version>
+  <main-launcher>BingoGame</main-launcher>
+  <main-class>FinalProject.Run</main-class>
+  <signed>false</signed>
+  <app-store>false</app-store></jpackage-state>
