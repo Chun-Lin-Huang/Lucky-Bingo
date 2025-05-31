@@ -1,6 +1,5 @@
 package FinalProject;
 
-import FinalProject.network.HostRoom;
 import FinalProject.network.NetworkGameManager;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -35,7 +34,7 @@ public class HostRoomUI extends Application {
         primaryStage.setTitle("建立房間");
         primaryStage.setScene(scene);
         primaryStage.show();
-        // ✅ 開始非同步等待連線
+        // 開始非同步等待連線
         new Thread(() -> {
             try {
                 NetworkGameManager netManager = new NetworkGameManager(true);

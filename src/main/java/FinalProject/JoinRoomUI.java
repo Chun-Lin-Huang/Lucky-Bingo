@@ -54,7 +54,7 @@ public class JoinRoomUI extends Application {
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    Platform.runLater(() -> status.setText("❌ 連線失敗，請確認 IP 與 Port"));
+                    Platform.runLater(() -> status.setText("連線失敗，請確認 IP 與 Port"));
                 }
             }).start();
         });

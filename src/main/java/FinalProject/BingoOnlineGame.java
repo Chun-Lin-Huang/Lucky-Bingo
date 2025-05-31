@@ -90,7 +90,7 @@ public class BingoOnlineGame extends Application {
             javafx.application.Platform.runLater(() -> {
                 Stage currentStage = (Stage) ((Button) e.getSource()).getScene().getWindow();
                 try {
-                    new BingoLobby().start(currentStage);  // ✅ 替換畫面而非關閉整個視窗
+                    new BingoLobby().start(currentStage);  // 替換畫面而非關閉整個視窗
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -255,7 +255,7 @@ public class BingoOnlineGame extends Application {
         isMyTurn = !lastGameIWon;
         boxLabel.setText("?");
         statusLabel.setText("請選擇卡牌...");
-        turnLabel.setVisible(false); // ✅ 隱藏回合提示
+        turnLabel.setVisible(false); // 隱藏回合提示
         updateTurnLabel();
         setupCardSelectionArea(cardBox);
         leftOverlay.getChildren().clear();
@@ -300,7 +300,7 @@ public class BingoOnlineGame extends Application {
                 grid[row][col] = label;
                 numberGrid.add(label, col, row);
 
-                // ✅ 加入點擊事件
+                // 加入點擊事件
                 label.setOnMouseClicked(e -> {
                     if (!cardSelected || !isMyTurn || gameOver) {
                         return;

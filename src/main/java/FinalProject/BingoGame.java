@@ -1,7 +1,6 @@
 // 單人版 Bingo：玩家 vs 電腦
 package FinalProject;
 
-import javafx.animation.ScaleTransition;
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.scene.Scene;
@@ -9,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import java.util.*;
 
 public class BingoGame extends Application {
@@ -335,6 +333,6 @@ public class BingoGame extends Application {
             return unmarkedNum;
         }
 
-        return null; // 沒有明顯的連線機會
+        return null;
     }
 }
